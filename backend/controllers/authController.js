@@ -68,3 +68,12 @@ exports.logout =(req, res, next) => {
         message: 'logged out'
     })
 }
+
+//User Profile
+exports.userProfle = async (req, res, next) => {
+    const user = await User.findById(req.user.id).select('passport');
+    res.status(200).json({
+        success: true,
+        user
+    })
+}
