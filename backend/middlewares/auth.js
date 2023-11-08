@@ -19,3 +19,11 @@ exports.isAuthenticated = async (req, res, next) => {
         return next(new ErrorResponse('You must login', 401))
     }
 }
+
+//Middleware for admin
+exports.isAdmin = (req, res, next ) => {
+    if(req.user.role === 'user') {
+        return next(new ErrorResponse('Access denied, you must be an Admin', 401))
+    }
+    next()
+}
