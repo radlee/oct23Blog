@@ -5,7 +5,12 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 var cors = require('cors');
-const cookieParser = require('cookie-parser');
+var cookieParser = require('cookie-parser');
+
+const errorHandler = require('./middlewares/error')
+
+//Import routes
+const authRoutes = require('./routes/authRoutes')
 
 //DB Connection
 mongoose.connect(process.env.DATABASE, {
@@ -28,6 +33,12 @@ app.use(bodyParser.urlencoded({
 
 app.use(cookieParser());
 app.use(cors());
+
+//Routes Middlewares
+app.use('/api', authRoutes)
+
+//error middleware
+app.use(errorHandler);
 
 //PORT
 
