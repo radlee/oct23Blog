@@ -37,7 +37,7 @@ app.use(cors());
 
 //Routes Middlewares
 app.use('/api', authRoutes);
-app.use('/api',postRoutes);
+app.use('/api',postRoute);
 
 //error middleware
 app.use(errorHandler);
